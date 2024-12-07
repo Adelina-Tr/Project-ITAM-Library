@@ -1,0 +1,186 @@
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.Border;
+public class VistaBibliotecaCentral extends JFrame {
+	protected JPanel miPanel, miPanel2, miPanel3;
+	protected Border miBorde;
+	protected JLabel lbClave1, lbClave2, lbClave3, lbClave4, lbAltura, lbAnioFab, lbCarga, lbModelo, lbPeso, lbPower, lbCosto,lbNa1;
+	protected JTextField txClave1, txClave2, txClave3, txClave4, txAltura, txAnioFab, txCarga, txModelo, txPeso, txPower, txCosto;
+	protected JButton btAlta, btBaja, btReparar, btInfo, btMision;
+	protected JTextArea taInfo, taInfo2;
+	
+	public VistaBibliotecaCentral(){
+		super("Estación Lanzamiento");
+		miPanel2= new JPanel(new GridLayout(1,3));
+		miBorde=BorderFactory.createEmptyBorder(10,10,10,10);
+		miPanel2.setBorder(miBorde);
+		
+		miPanel= new JPanel(new GridLayout(8,4));
+		miBorde=BorderFactory.createEmptyBorder(0,0,0,0);
+		miPanel.setBorder(miBorde);
+		
+		
+		Font font = new Font("Verdana", Font.BOLD, 17);
+		Font font2= new Font("Verdana", Font.BOLD, 14);
+		
+		
+		lbClave1= new JLabel("Clave ");
+		lbClave1.setFont(font2);
+		lbClave1.setHorizontalAlignment(SwingConstants.RIGHT);
+		miPanel.add(lbClave1);
+		txClave1=new JTextField(20);
+		miPanel.add(txClave1);
+		
+		lbAltura= new JLabel("Altura ");
+		lbAltura.setFont(font2);
+		lbAltura.setHorizontalAlignment(SwingConstants.RIGHT);
+		miPanel.add(lbAltura);
+		txAltura=new JTextField(20);
+		miPanel.add(txAltura);
+		
+		lbAnioFab= new JLabel("Año Fab ");
+		lbAnioFab.setFont(font2);
+		lbAnioFab.setHorizontalAlignment(SwingConstants.RIGHT);
+		miPanel.add(lbAnioFab);
+		txAnioFab=new JTextField(20);
+		miPanel.add(txAnioFab);
+		
+		lbCarga= new JLabel("Carga ");
+		lbCarga.setFont(font2);
+		lbCarga.setHorizontalAlignment(SwingConstants.RIGHT);
+		miPanel.add(lbCarga);
+		txCarga=new JTextField(20);
+		miPanel.add(txCarga);
+		
+		lbModelo= new JLabel("Modelo ");
+		lbModelo.setFont(font2);
+		lbModelo.setHorizontalAlignment(SwingConstants.RIGHT);
+		miPanel.add(lbModelo);
+		txModelo=new JTextField(20);
+		miPanel.add(txModelo);
+		
+		lbPeso= new JLabel("Peso ");
+		lbPeso.setFont(font2);
+		lbPeso.setHorizontalAlignment(SwingConstants.RIGHT);
+		miPanel.add(lbPeso);
+		txPeso=new JTextField(20);
+		miPanel.add(txPeso);
+		
+		lbPower= new JLabel("Empuje ");
+		lbPower.setFont(font2);
+		lbPower.setHorizontalAlignment(SwingConstants.RIGHT);
+		miPanel.add(lbPower);
+		txPower=new JTextField(20);
+		miPanel.add(txPower);
+		
+		lbCosto= new JLabel("Costo ");
+		lbCosto.setFont(font2);
+		lbCosto.setHorizontalAlignment(SwingConstants.RIGHT);
+		miPanel.add(lbCosto);
+		txCosto=new JTextField(20);
+		miPanel.add(txCosto);
+		
+		lbNa1= new JLabel("");
+		miPanel.add(lbNa1);
+		lbNa1= new JLabel("");
+		miPanel.add(lbNa1);
+		lbNa1= new JLabel("");
+		miPanel.add(lbNa1);
+		lbNa1= new JLabel("");
+		miPanel.add(lbNa1);
+		
+		lbNa1= new JLabel("");
+		miPanel.add(lbNa1);
+		
+		btAlta=new JButton("Alta");
+		btAlta.setFont(font);
+		btAlta.setForeground(Color.DARK_GRAY);
+		miPanel.add(btAlta);
+		
+		taInfo= new JTextArea();
+		miPanel.add(taInfo);
+		taInfo.setEditable(false);
+		
+		lbNa1= new JLabel("");
+		miPanel.add(lbNa1);
+		lbNa1= new JLabel("");
+		miPanel.add(lbNa1);
+		lbNa1= new JLabel("");
+		miPanel.add(lbNa1);
+		lbNa1= new JLabel("");
+		miPanel.add(lbNa1);
+		
+		
+		super.setContentPane(miPanel);
+		super.setBounds(50,50,105,30);
+		super.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		super.setVisible(true);
+		
+		miPanel2.add(miPanel);
+		
+		miPanel3= new JPanel(new GridLayout(3,3));
+		miBorde= BorderFactory.createEmptyBorder(0,20,100,20);///////////////////////////
+		miPanel3.setBorder(miBorde);
+		
+		btMision=new JButton("Misión");
+		btMision.setFont(font);
+		btMision.setForeground(Color.RED);
+		miPanel3.add(btMision);
+		
+		btBaja=new JButton("Baja");
+		btBaja.setFont(font);
+		btBaja.setForeground(Color.RED);
+		miPanel3.add(btBaja);
+		
+		btReparar=new JButton("Reparar");
+		btReparar.setFont(font);
+		btReparar.setForeground(Color.RED);
+		miPanel3.add(btReparar);
+		
+		txClave2=new JTextField(20);
+		miPanel3.add(txClave2);
+		
+		txClave3=new JTextField(20);
+		miPanel3.add(txClave3);
+		
+		txClave4=new JTextField(20);
+		miPanel3.add(txClave4);
+		
+		lbClave2= new JLabel("");
+		miPanel3.add(lbClave2);
+		
+		lbClave3= new JLabel("Poner clave");
+		lbClave3.setFont(font2);
+		lbClave3.setHorizontalAlignment(SwingConstants.CENTER);
+		miPanel3.add(lbClave3);
+		
+		lbClave4= new JLabel("");
+		miPanel3.add(lbClave4);
+		
+		super.setContentPane(miPanel3);
+		super.setBounds(50,50,105,30);
+		super.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		super.setVisible(true);
+		
+		miPanel2.add(miPanel3);
+		
+		taInfo2= new JTextArea();
+		JScrollPane scroll = new JScrollPane (taInfo, 
+		   JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
+		miPanel2.add(scroll);
+		miPanel2.setVisible (true);
+		taInfo2.setEditable(false);
+		
+		super.setContentPane(miPanel2);
+		super.setBounds(500,500,1500,300);
+		super.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		super.setVisible(true);
+	}
+
+	public static void main(String[] args)  {
+		VistaBibliotecaCentral a= new VistaBibliotecaCentral();
+
+	}
+
+}

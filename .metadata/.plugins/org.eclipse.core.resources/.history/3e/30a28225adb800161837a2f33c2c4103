@@ -1,0 +1,117 @@
+
+public class Biblioteca {
+	/*
+	 * Adelina Trejo Espinoza 168135
+	 * Proyecto Final BIBLIOTECA 
+	 * Clase Biblioteca que tiene como atributo 
+	 * una lista arreglo ordenada de Materiales 
+	 * 07/12/16
+	 */
+	private String nombre;
+	private String direccion;
+	private String telefono;
+	private ListaArregloOrdenada <Material> materiales;
+	
+	public Biblioteca() {
+		materiales=new ListaArregloOrdenada <Material> (1000);
+	}
+
+	public Biblioteca(String nombre, String direccion, String telefono) {
+		this();
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.telefono = telefono;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Biblioteca other = (Biblioteca) obj;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		return true;
+	}
+	public int comoareTo(Biblioteca otra){
+		return nombre.compareTo(otra.getNombre());
+	}
+	public String toString(){
+		StringBuilder sb;
+		sb= new StringBuilder();
+		sb.append("Biblioteca\n");
+		sb.append("Nombre: "+nombre+"\n");
+		sb.append("Direccion: "+direccion+"\n");
+		sb.append("Telefono: "+telefono+"\n");
+		return sb.toString();
+	}
+	public boolean altaMaterial(char tipo, String titulo, String autor, int anioPublicacion, String editorial, String clasificacion,
+			char estante, boolean status){
+		boolean resp;
+		Material nuevo;
+		nuevo=new Material(tipo,titulo,autor,anioPublicacion,editorial, clasificacion,estante,status);
+		resp=materiales.add(nuevo);
+		return resp;
+	}
+	public String bajaMaterial(int unaClave){
+		int i, ocupados;
+		Material uno;
+		String info;
+		ocupados= materiales.getOcupados();
+		i=0;
+		while (i<ocupados && unaClave!=materiales.getElement(i).getClave())
+			i++;
+		if(i<ocupados){
+			uno= materiales.getElement(i);
+			uno=materiales.remove(uno);
+			if(uno!=null)
+				info=("SE ELIMINO CORRECTAMENTE: \n"+uno.toString());
+			else
+				info= "NO EXISTE";
+		}
+		else
+			info= "NO EXISTE";
+		return info;	
+	}
+	
+
+	
+	
+	
+	
+
+}

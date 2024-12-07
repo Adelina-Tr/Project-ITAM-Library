@@ -1,0 +1,121 @@
+
+public class ListaArregloOrdenada <T extends Comparable <T>>{
+	private T a[];
+	private int ocupados;
+	private int MAX=1000;
+	
+	public ListaArregloOrdenada(){
+		ocupados=0;
+		a= (T[]) new Comparable[MAX];
+	}
+	public ListaArregloOrdenada(int tamanio){
+		ocupados=0;
+		a= (T[]) new Comparable[MAX];
+		MAX=tamanio;
+	}
+	public int getOcupados() {
+		return ocupados;
+	}
+	public int getMAX() {
+		return MAX;
+	}
+	public T getElement(int pos){
+		T aux;
+		if(pos<=MAX && pos>=1)
+			aux=a[pos-1];
+		else
+			aux=null;
+		return aux;
+	}
+	public String toString(){
+		StringBuilder sb;
+		int i;
+		sb= new StringBuilder();
+		sb.append("Numero de elementos"+ ocupados+"\n");
+		for(i=0; i<ocupados; i++)
+			sb.append(a[i].toString());
+		return sb.toString();
+	}
+	public  int buscaBin(T unDato){
+		int pos;
+		int inicio = 0;
+		int fin = ocupados-1;
+		int mitad = (inicio+fin)/2; 
+		
+		while ( inicio <= fin && !a[mitad].equals(unDato) ) {
+			if ( unDato.compareTo(a[mitad])<0 )
+				fin = mitad-1; 
+			else 
+				inicio = mitad+1;
+			mitad = (inicio+fin)/2;
+		}
+		if ( inicio > fin )		// elemento no encontrado
+			pos = -inicio-1;	
+		else 					
+			pos = mitad;
+		return pos;
+	}
+	public void recorreDer(int pos){
+		int i;
+		for(i=ocupados; i>pos; i--)
+			a[i]=a[i-1];
+		a[pos]=null;
+	}
+	public void recorreIzq(int pos){
+		int i;
+		for(i=pos;i<ocupados-1; i++)
+			a[i]=a[i+1];
+		a[ocupados-1]=null;
+	}
+	public boolean add(T unDato){
+		boolean resp;
+		int pos;
+		if(ocupados<MAX){//si hay lugar
+			pos=buscaBin(unDato);//checar que no este
+			if(pos<0){
+				a[ocupados]=unDato;
+				ocupados++;
+				resp=true;
+			}
+			else
+				resp=false;		
+		}
+		else
+			resp=false;
+		return resp;
+	}
+	public boolean contains(T unDato){
+		int pos;
+		boolean resp;
+		pos=buscaBin(unDato);
+		if(pos<0)
+			resp=false;
+		else
+			resp=true;
+		return resp;
+	}
+	public T remove(T unDato){
+		int pos;
+		T aux;
+		pos=buscaBin(unDato);
+		if(pos>=0){//si esta
+			aux=a[pos];
+			recorreIzq(pos);
+			ocupados--;
+		}
+		else
+			aux=null;
+		return aux;
+	}
+	public int indexOf(T unDato){
+		return buscaBin(unDato);
+	}
+	public void clear(){
+		ocupados=0;
+		a= (T[]) new Comparable[MAX];
+	}
+
+}
+
+
+

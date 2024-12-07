@@ -1,0 +1,205 @@
+
+public class Biblioteca {
+	/*
+	 * Adelina Trejo Espinoza 168135
+	 * Proyecto Final BIBLIOTECA 
+	 * Clase Biblioteca que tiene como atributo 
+	 * una lista arreglo ordenada de Materiales 
+	 * 07/12/16
+	 */
+	private String nombre;
+	private String direccion;
+	private int telefono;
+	private ListaArregloDesordenada <Material> materiales;
+	
+	public Biblioteca() {
+		materiales=new ListaArregloDesordenada <Material> (100);
+	}
+
+	public Biblioteca(String nombre, String direccion, int telefono) {
+		this();
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.telefono = telefono;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public int getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(int telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Biblioteca other = (Biblioteca) obj;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		return true;
+	}
+	public int compareTo(Biblioteca otra){
+		return nombre.compareTo(otra.getNombre());
+	}
+	public String toString(){
+		StringBuilder sb;
+		sb= new StringBuilder();
+		sb.append("Biblioteca\n");
+		sb.append("Nombre: "+nombre+"\n");
+		sb.append("Direccion: "+direccion+"\n");
+		sb.append("Telefono: "+telefono+"\n");
+		return sb.toString();
+	}
+	public boolean altaMaterial(String tipo, String titulo, String autor, int anioPublicacion, String editorial, String clasificacion,char estante,boolean restriccionPrestamo){
+		boolean resp;
+		Material nuevo;
+		nuevo=new Material(tipo,titulo,autor,anioPublicacion,editorial,clasificacion,estante,restriccionPrestamo);		
+		resp=materiales.add(nuevo);
+		return resp;
+	}
+	public String bajaMaterial(int unaClave){
+		int i, ocupados;
+		Material uno;
+		String info;
+		ocupados= materiales.getOcupados();
+		i=0;
+		while (i<ocupados && unaClave!=materiales.getElement(i).getClave())
+			i++;
+		if(i<ocupados){
+			uno= materiales.getElement(i);
+			uno=materiales.remove(uno);
+			if(uno!=null)
+				info=("SE ELIMINO CORRECTAMENTE: \n"+uno.toString());
+			else
+				info= "BAJA NO EXITOSA, EL MATERIAL NO EXISTE";
+		}
+		else
+			info= "NO EXISTE";
+		return info;	
+	}
+	public int cuantosXClasificacion(String clasificacion){
+		int cuantos, i , ocupados;
+		cuantos=0;
+		ocupados= materiales.getOcupados();
+		for(i=0;i<ocupados;i++)
+			if(materiales.getElement(i).getClasificacion().equals(clasificacion))
+				cuantos++;
+		return cuantos;
+	}
+	public int cuantosXEjemplar(String titulo){
+		int cuantos, i , ocupados;
+		cuantos=0;
+		ocupados= materiales.getOcupados();
+		for(i=0;i<ocupados;i++)
+			if(materiales.getElement(i).getTitulo().equals(titulo))
+				cuantos++;
+		return cuantos;
+	}
+	public int cuantosXTipo(String tipo){
+		int cuantos, i , ocupados;
+		cuantos=0;
+		ocupados= materiales.getOcupados();
+		for(i=0;i<ocupados;i++)
+			if(materiales.getElement(i).getTipo()==(tipo))
+				cuantos++;
+		return cuantos;
+	}
+	public int disponiblesXEjemplar(String titulo){
+		int aux, cuantos, ocupados, i;
+		aux= cuantosXEjemplar(titulo);
+		ocupados= materiales.getOcupados();
+		cuantos=0;
+		if(aux>0){		
+			for(i=0; i<ocupados;i++)
+				if(materiales.getElement(i).getTitulo().equals(titulo))
+					if(materiales.getElement(i).getStatus()==true && 
+					materiales.getElement(i).getRestriccionPrestamo()==false)
+						cuantos++;						
+		}
+		return cuantos;
+	}
+	public String verClaveDDisponiblesXEjemplar(String titulo){//para visualizar la clave
+		int aux, ocupados, i;
+		String info= "No hay ejemplares disponibles";
+		aux= cuantosXEjemplar(titulo);
+		ocupados= materiales.getOcupados();
+		if(aux>0){		
+			for(i=0; i<ocupados;i++)
+				if(materiales.getElement(i).getTitulo().equals(titulo))
+					if(materiales.getElement(i).getStatus()==true && 
+					materiales.getElement(i).getRestriccionPrestamo()==false)
+						info= "Claves de Disponibles"+materiales.getElement(i).getClave()+"\n";									
+		}
+		return info;
+	}
+	public String prestarMaterial(int clave){
+		int i, ocupados;
+		String resp;
+		i=0;
+		ocupados= materiales.getOcupados();
+		while(i<ocupados && materiales.getElement(i).getClave()!=clave)
+			i++;
+		if(i>ocupados)
+			resp= "Material no encontrado";
+		else{
+			if(materiales.getElement(i).getStatus()==true && materiales.getElement(i).getRestriccionPrestamo()==false){
+				resp= "Prestamo exitoso: "+materiales.getElement(i).toString();	
+				materiales.getElement(i).setStatus(false);
+			}
+			else
+				resp= "Material no disponible";	
+		}
+		return resp;
+	}
+	public String devolverMaterial(int clave){
+		int i, ocupados;
+		String resp;
+		ocupados= materiales.getOcupados();
+		i=0;
+		while(i<ocupados )
+			i++;
+		if(i>ocupados || materiales.getElement(i).getRestriccionPrestamo()==true || materiales.getElement(i).getStatus()==true)
+			resp= "Devolucion fallida";
+		else
+			resp= "Devolucion exitosa";
+		return resp;
+	}
+	public double generarMulta(int diasRetraso){
+		double multa;
+		multa= 20;
+		if(diasRetraso<1)
+			multa= 0;
+		else
+			multa= diasRetraso*multa;
+		return multa;	
+	}	
+}

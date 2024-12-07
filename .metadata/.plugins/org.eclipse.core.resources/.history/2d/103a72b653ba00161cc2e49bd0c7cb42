@@ -1,0 +1,72 @@
+
+public class Ejecutable2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Biblioteca mb;
+		mb= new Biblioteca ("Biblioteca Central", "Zapata No.450", 696950456);
+		boolean resp;
+		String baja;
+		int cuantosXClas, cXEjem, cXTip, cDisp;
+		
+		resp= mb.altaMaterial("libro", "tu y yo", "Martha", 1234, "SOl", "novela", 'C', false);
+        if(resp== true)
+        	System.out.println("Alta exitosa");
+        else
+        	System.out.println("Alta no exitosa");
+        
+        resp= mb.altaMaterial("libro", "tu y yo", "Martha", 1234, "SOl", "novela", 'C', false);
+        if(resp== true)
+        	System.out.println("Alta exitosa");
+        else
+        	System.out.println("Alta no exitosa");
+        
+        resp= mb.altaMaterial("libro", "tu y yo", "Martha", 1234, "SOl", "novela", 'C', false);
+        if(resp== true)
+        	System.out.println("Alta exitosa");
+        else
+        	System.out.println("Alta no exitosa");
+        
+        resp= mb.altaMaterial("libro", "tu y yo", "Martha", 1234, "SOl", "novela", 'C', true);
+        if(resp== true)
+        	System.out.println("Alta exitosa");
+        else
+        	System.out.println("Alta no exitosa");
+        
+        baja= mb.bajaMaterial(1);
+        System.out.println(baja);
+        	
+        baja= mb.bajaMaterial(1);
+        System.out.println(baja);
+        
+        cuantosXClas= mb.cuantosXClasificacion("novela");
+        System.out.println(cuantosXClas);
+        
+        cXEjem= mb.cuantosXEjemplar("tu y yo");
+        System.out.println(cXEjem);
+        
+        cXTip= mb.cuantosXTipo("revista");
+        System.out.println(cXTip);
+        
+        cXTip= mb.cuantosXTipo("libro");
+        System.out.println(cXTip);
+        
+        cDisp= mb.disponiblesXEjemplar("tu y yo");
+        System.out.println(cDisp);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        	
+        
+
+        
+	}
+
+}

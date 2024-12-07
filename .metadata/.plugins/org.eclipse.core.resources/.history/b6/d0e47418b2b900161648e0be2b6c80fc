@@ -1,0 +1,21 @@
+import java.io.File;
+import java.util.Scanner;
+public class Ejecutablee {
+
+	public static void main(String[] args) {
+		
+		Biblioteca mB;
+		File unArchivo;
+		Scanner lectura;
+		int n,i, anioPublicacion;
+		String tipo, titulo, autor,editorial, clasificacion;
+		char estante;
+		boolean restriccionPrestamo, resp;
+		
+		unArchivo=new File("datos.txt");
+		mB= new Biblioteca ("Bibiloteca Central", "Zapata No.689 Col. La Concepcion",696950826);
+		
+
+	}
+
+}

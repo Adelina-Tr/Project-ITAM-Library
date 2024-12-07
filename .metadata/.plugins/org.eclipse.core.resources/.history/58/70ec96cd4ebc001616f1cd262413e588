@@ -1,0 +1,112 @@
+import java.awt.event.*;
+import java.io.File;
+import java.util.Scanner;
+public class BibliotecaControlador extends BibliotecaVista{
+	
+	Biblioteca mb;
+	
+	public BibliotecaControlador(){
+		super();
+		mb= new Biblioteca("Biblioteca Central", "Zapata No.450", 696950456);
+		btCxT.addActionListener(new EscuchaInfo());
+		btCxE.addActionListener(new EscuchaInfo()); 
+		btvCD.addActionListener(new EscuchaInfo());
+		btCxC.addActionListener(new EscuchaInfo());
+		btAlta.addActionListener(new EscuchaAlta());
+		btInfo.addActionListener(new EscuchaInfo());
+		btBaja.addActionListener(new EscuchaBaja());
+		btBuscar.addActionListener(new EscuchaInfo()); 
+		btDevolver.addActionListener(new EscuchaInfo());
+		btPrestar.addActionListener(new EscuchaInfo());	
+		lecturaInicial();
+	}
+	
+	
+	public class EscuchaAlta implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			String tipo, sPrecio, sEdad;
+			int edad ;
+			double precio;
+			boolean resp;
+			
+			//convertir de sting
+			tipo=txTipo.getText();
+			sEdad=txEdad.getText();
+			edad= Integer.parseInt(sEdad);
+			sPrecio= txPrecio.getText();
+			precio= Double.parseDouble(sPrecio);
+			
+			resp=miTienda.altaAnimalito(tipo, edad, precio);
+			if(resp)
+				taInfo.setText("alta exitosa");
+			else
+				taInfo.setText("alta NO exitosa");
+			
+			
+		}
+		
+	}//clase escucha alta
+	
+	public void lecturaInicial(){
+		File unArchivo;
+		int n, i, edad;
+		Scanner lectura;
+		double precio;
+		boolean resp;
+		String tipo;
+		unArchivo= new File ("datos.txt");
+		try {
+			lectura= new Scanner(unArchivo);
+			n=lectura.nextInt();
+			for(i=1; i<=n;i++){
+				tipo=lectura.next();
+				edad=lectura.nextInt();
+				precio=lectura.nextDouble();
+				resp=miTienda.altaAnimalito(tipo, edad, precio);
+				if(resp)
+					System.out.println("Alta exitosa");
+				else
+					System.out.println("Alta NO exitosa");
+			}
+			System.out.println(miTienda.toString());
+			lectura.close();
+			
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+	}
+	
+	public class EscuchaBaja implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String sClave, infoAnimalito;
+			int clave;
+			sClave= txClave.getText();
+			clave= Integer.parseInt(sClave);
+			infoAnimalito= miTienda.bajaAnimalito(clave);
+			taInfo.setText(infoAnimalito);			
+		}
+		
+	}//escucha baja
+	
+	public class EscuchaInfo implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String info;
+			info= miTienda.toString();
+			taInfo.setText(info);
+			
+		}
+		
+	}//escucha info
+
+//clase controlador
+	
+
+}

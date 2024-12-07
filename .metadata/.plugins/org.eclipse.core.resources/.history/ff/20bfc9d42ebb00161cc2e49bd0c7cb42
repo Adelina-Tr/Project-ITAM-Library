@@ -1,0 +1,11 @@
+
+public class BibliotecaVista extends JFrame{
+	/*
+	 * Adelina Trejo 168135
+	 * Proyecto Final BIBLIOTECA 
+	 * Clase vista para presentar ventana al usuario
+	 * y trabajar con la Biblioteca
+	 * 07/12/16
+	 */
+
+}

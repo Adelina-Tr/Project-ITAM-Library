@@ -1,0 +1,13 @@
+
+public class EjecutableBibliotecaConVentana {
+
+	public static void main(String[] args) {
+		
+		BibliotecaControlador miVentana;
+		
+		miVentana= new BibliotecaControlador();
+		miVentana.pack();
+		
+	}
+
+}

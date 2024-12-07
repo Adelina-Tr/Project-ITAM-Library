@@ -1,0 +1,119 @@
+
+public class Ejecutable2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Biblioteca mb;
+		mb= new Biblioteca ("Biblioteca Central", "Zapata No.450", 696950456);
+		boolean resp;
+		String baja, clavesDDisp, clavesDDisp2, datos, prestar, devolver;
+		int cuantosXClas, cXEjem, cXTip, cDisp;
+		double multa;
+		
+		resp= mb.altaMaterial("libro", "tu y yo", "Martha", 1234, "SOl", "novela", 'C', false);
+        if(resp== true)
+        	System.out.println("Alta exitosa");
+        else
+        	System.out.println("Alta no exitosa");
+        
+        resp= mb.altaMaterial("libro", "tu y yo", "Martha", 1234, "SOl", "novela", 'C', false);
+        if(resp== true)
+        	System.out.println("Alta exitosa");
+        else
+        	System.out.println("Alta no exitosa");
+        
+        resp= mb.altaMaterial("libro", "tu y yo", "Martha", 1234, "SOl", "novela", 'C', false);
+        if(resp== true)
+        	System.out.println("Alta exitosa");
+        else
+        	System.out.println("Alta no exitosa");
+        
+        resp= mb.altaMaterial("libro", "tu y yo", "Martha", 1234, "SOl", "novela", 'C', true);
+        if(resp== true)
+        	System.out.println("Alta exitosa");
+        else
+        	System.out.println("Alta no exitosa");
+        
+        resp= mb.altaMaterial("libro", "Maya", "Martha", 1234, "SOl", "novela", 'C', true);
+        if(resp== true)
+        	System.out.println("Alta exitosa");
+        else
+        	System.out.println("Alta no exitosa");
+        
+        resp= mb.altaMaterial("libro", "Maya", "Martha", 1234, "SOl", "novela", 'C', true);
+        if(resp== true)
+        	System.out.println("Alta exitosa");
+        else
+        	System.out.println("Alta no exitosa");
+        
+        baja= mb.bajaMaterial(1);
+        System.out.println(baja);
+        	
+        baja= mb.bajaMaterial(1);
+        System.out.println(baja);
+        
+        cuantosXClas= mb.cuantosXClasificacion("novela");
+        System.out.println(cuantosXClas);
+        
+        cXEjem= mb.cuantosXEjemplar("tu y yo");
+        System.out.println(cXEjem);
+        
+        cXTip= mb.cuantosXTipo("revista");
+        System.out.println(cXTip);
+        
+        cXTip= mb.cuantosXTipo("libro");
+        System.out.println(cXTip);
+        
+        cDisp= mb.disponiblesXEjemplar("tu y yo");
+        System.out.println("disponibles x ejemplar :"+cDisp);
+        
+        clavesDDisp= mb.verClaveDDisponiblesXEjemplar("tu y yo");
+        System.out.println(clavesDDisp);
+        
+        clavesDDisp2= mb.verClaveDDisponiblesXEjemplar("Maya");
+        System.out.println(clavesDDisp2);
+        
+        datos= mb.mostrarDatosDMaterial(6);
+        System.out.println("Material encontrado : \n"+datos);
+        
+        prestar= mb.prestarMaterial(2);
+        System.out.println(prestar);
+        
+        prestar= mb.prestarMaterial(2);
+        System.out.println(prestar);
+        
+        prestar= mb.prestarMaterial(6);
+        System.out.println(prestar);
+        
+        multa= mb.generarMulta(3);
+        System.out.println("multa de: $"+multa);
+        
+        /*
+        devolver= mb.devolverMaterial(2, 0);
+        System.out.println(devolver);
+        */
+        
+        resp= mb.altaMaterial("libro", "Cielo azul", "Martha", 1234, "SOl", "novela", 'C', false);
+        if(resp== true)
+        	System.out.println("Alta exitosa");
+        else
+        	System.out.println("Alta no exitosa");
+        
+        datos= mb.mostrarDatosDMaterial(7);
+        System.out.println("Material encontrado : \n"+datos);
+        
+        
+        
+        
+        
+        
+        
+        
+        	
+        
+
+        
+	}
+
+}

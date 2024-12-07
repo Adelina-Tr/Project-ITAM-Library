@@ -1,0 +1,10 @@
+
+public class Ejecutable {
+
+	public static void main(String[] args) {
+		Biblioteca mB;
+		mB= new Biblioteca ("Bibiloteca Central", "Zapata No.689 Col. La Concepcion", int telefono);
+
+	}
+
+}

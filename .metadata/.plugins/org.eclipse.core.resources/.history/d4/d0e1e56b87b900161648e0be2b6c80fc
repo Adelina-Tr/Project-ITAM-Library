@@ -1,0 +1,132 @@
+
+public class Material implements Comparable <Material>{
+	/*
+	 * Adelina Trejo Espinoza 168135
+	 * Proyecto Final BIBLIOTECA
+	 * Clase material
+	 * 07/12/16
+	 */
+	
+	private char tipo;
+	private int clave;
+	private String titulo;
+	private String autor;
+	private int anioPublicacion;
+	private String editorial;
+	private String clasificacion;
+	private char estante;
+	private boolean status;
+	private boolean restriccionPrestamo;
+	private int diasMaxPrestamo;
+	private static int folio= 0;
+	
+	public Material(char tipo, String titulo, String autor, int anioPublicacion, String editorial, String clasificacion,
+			char estante, boolean status, boolean restriccionPrestamo) {
+		folio++;
+		clave=folio;
+		this.tipo = tipo;
+		this.titulo = titulo;
+		this.autor = autor;
+		this.anioPublicacion = anioPublicacion;
+		this.editorial = editorial;
+		this.clasificacion = clasificacion;
+		this.estante = estante;
+		this.status = status;
+		this.restriccionPrestamo= restriccionPrestamo;
+		int resp;
+		if(restriccionPrestamo== true)//
+			resp=diasMaxPrestamo= 0;
+		else
+			resp= 7;
+		this.diasMaxPrestamo= resp;
+		
+	}
+
+	public char getEstante() {
+		return estante;
+	}
+
+	public void setEstante(char estante) {
+		this.estante = estante;
+	}
+
+	public boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	public char getTipo() {
+		return tipo;
+	}
+
+	public int getClave() {
+		return clave;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public String getAutor() {
+		return autor;
+	}
+
+	public int getAnioPublicacion() {
+		return anioPublicacion;
+	}
+
+	public String getEditorial() {
+		return editorial;
+	}
+
+	public String getClasificacion() {
+		return clasificacion;
+	}
+	public boolean getRestriccionPrestamo(){
+		return restriccionPrestamo;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + clave;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Material other = (Material) obj;
+		if (clave != other.clave)
+			return false;
+		return true;
+	}
+	public int compareTo(Material otro){
+		return clave-otro.getClave();
+	}
+	public String toString(){
+		StringBuilder sb;
+		sb= new StringBuilder();
+		sb.append("Material\n");
+		sb.append("Tipo: "+tipo+"\n");
+		sb.append("Clave: "+clave+"\n");
+		sb.append("Titulo: "+titulo+"\n");
+		sb.append("Autor: "+autor+"\n");
+		sb.append("Anio de Publicacion: "+anioPublicacion+"\n");
+		sb.append("Editorial: "+editorial+"\n");
+		sb.append("Clasificacion: "+clasificacion+"\n");
+		sb.append("Estante: "+estante+"\n");
+		sb.append("Status: "+status+"\n");
+		sb.append("Restriccion Prestamo: "+restriccionPrestamo+"\n");
+		return sb.toString();	
+	}
+}

@@ -1,0 +1,48 @@
+import java.util.*;
+import java.io.*;
+public class Ejecutable {
+
+	public static void main(String[] args) {
+		
+		
+		
+		
+		Scanner lectura;
+		File unArchivo;
+		Biblioteca mB;
+		int n, edad, i;
+		double precio;
+		String tipo, bajaA;
+		boolean resp;
+		
+		unArchivo=new File("datos.txt");
+		mB= new Biblioteca ("Bibiloteca Central", "Zapata No.689 Col. La Concepcion",696950826);
+		
+		try {
+			lectura= new Scanner(unArchivo);
+			n=lectura.nextInt();
+			for(i=1; i<=n;i++){
+				tipo=lectura.next();
+				edad=lectura.nextInt();
+				precio=lectura.nextDouble();
+				resp=miTienda.altaAnimalito(tipo, edad, precio);
+				if(resp)
+					System.out.println("Alta exitosa");
+				else
+					System.out.println("Alta NO exitosa");
+			}
+			System.out.println(miTienda.toString());
+			lectura.close();
+			
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		bajaA=miTienda.bajaAnimalito(2);
+		System.out.println("BAJA"+bajaA);
+		
+		i=miTienda.cuantoXTipo("perro");
+		System.out.println("HAY "+i+" perros");
+	}
+
+}

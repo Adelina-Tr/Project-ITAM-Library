@@ -1,0 +1,49 @@
+import java.util.*;
+import java.io.*;
+public class Ejecutable {
+
+	public static void main(String[] args) {
+		/*
+		 * Adelina trejo Espinoza 168135
+		 * Ejecutable Biblioteca
+		 * 18/11/16
+		 */
+			Scanner lectura;
+			File unArchivo;
+			Biblioteca miB;
+			int n, i, anioPublicacion;
+			String tipo, titulo,autor, editorial, clasificacion;
+			boolean resp, restriccionPrestamo;
+		    char estante;
+			 
+			
+		    unArchivo=new File("info.txt");
+			miB=new Biblioteca("Biblioteca Central", "Zapata No.450", 696950456);
+			
+			try {
+				lectura= new Scanner(unArchivo);
+				n=lectura.nextInt();
+				for(i=1; i<=n;i++){
+					tipo= lectura.next();
+					titulo= lectura.next();
+					autor= lectura.next();
+					anioPublicacion= lectura.nextInt();
+					editorial= lectura.next();
+					clasificacion= lectura.next();
+					estante= lectura.next().charAt(0);
+					restriccionPrestamo= lectura.nextBoolean();
+					
+					resp=miB.altaMaterial(tipo,titulo,autor,anioPublicacion,editorial,clasificacion,estante,restriccionPrestamo);
+					if(resp= true)
+						System.out.println("Alta exitosa");
+					else
+						System.out.println("Alta NO exitosa");
+				}
+				System.out.println(miB.toString());;
+				lectura.close();
+					
+			} catch (Exception e) {
+				System.out.println(e.toString());
+			}
+	}
+}

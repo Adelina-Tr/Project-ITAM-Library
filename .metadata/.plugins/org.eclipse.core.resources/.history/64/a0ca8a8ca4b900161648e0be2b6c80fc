@@ -1,0 +1,51 @@
+import java.util.*;
+import java.io.*;
+public class Ejecutable {
+
+	public static void main(String[] args) {
+		
+		Biblioteca mB;
+		File unArchivo;
+		Scanner lectura;
+		int n,i, anioPublicacion;
+		String tipo, titulo, autor,editorial, clasificacion, bajaA;
+		char estante;
+		boolean restriccionPrestamo, resp;
+		
+		unArchivo=new File("datos.txt");
+		mB= new Biblioteca ("Bibiloteca Central", "Zapata No.689 Col. La Concepcion",696950826);
+		
+		try {
+			lectura= new Scanner(unArchivo);
+			n=lectura.nextInt();
+			for(i=1; i<=n;i++){
+				tipo=lectura.next();
+				titulo= lectura.next();
+				autor= lectura.next();
+				anioPublicacion=lectura.nextInt();
+				editorial=lectura.next();
+				clasificacion= lectura.next();
+				estante=lectura.next().charAt(1);
+				restriccionPrestamo= lectura.nextBoolean();
+				resp=mB.altaAnimalito(tipo,titulo,autor,anioPublicacion,editorial,clasificacion,estante,restriccionPrestamo);
+				if(resp)
+					System.out.println("Alta exitosa");
+				else
+					System.out.println("Alta NO exitosa");
+			}
+			System.out.println(mB.toString());
+			lectura.close();
+			
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		bajaA=mB.bajaMaterial(2);
+		System.out.println("BAJA"+bajaA);
+	
+	}
+}
+
+
+
+

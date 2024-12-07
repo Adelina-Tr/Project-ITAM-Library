@@ -1,0 +1,31 @@
+
+public class Ejecutable2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Biblioteca mb;
+		mb= new Biblioteca ("Biblioteca Central", "Zapata No.450", 696950456);
+		boolean resp;
+		String baja;
+		
+		resp= mb.altaMaterial("libro", "tu y yo", "Martha", 1234, "SOl", "novela", 'C', false);
+        if(resp== true)
+        	System.out.println("Alta exitosa");
+        else
+        	System.out.println("Alta no exitosa");
+        
+        resp= mb.altaMaterial("libro", "tu y yo", "Martha", 1234, "SOl", "novela", 'C', false);
+        if(resp== true)
+        	System.out.println("Alta exitosa");
+        else
+        	System.out.println("Alta no exitosa");
+        
+        baja= mb.bajaMaterial(1);
+        	System.out.println(baja);
+        
+
+        
+	}
+
+}
